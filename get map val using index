@@ -1,0 +1,2 @@
+myMap.values().toArray()[0] // java
+myMap.values.toTypedArray()[1] //kotlin
