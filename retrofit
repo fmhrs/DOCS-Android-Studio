@@ -11,22 +11,88 @@ add dependencys
   implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9'
   implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
   
+Data
+  data class DataCart (
+      val cartId: Int,
+      val cartTitle: String,
+      val cartDescription: String,
+      val cartPrice: Int,
+      val cartQty: Int
+  )
 
-https://jsonplaceholder.typicode.com/posts
-[
-  {
-    "userId": 1,
-    "id": 1,
-    "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
-    "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
-  }
-]
+Interface API
+interface LoginAPI {
+    @GET("employee/login")
+    suspend fun loginValidation(
+        @Query("email") email: String,
+        @Query("password") password: String
+    ): Response<Employee>
+}
 
-Repositorys
-  []Model
-  []Api (inside this is new interface)
-  
-  
-  
+Instance
+object Instance {
+    val retrofit by lazy {
+        Retrofit.Builder()
+            .baseUrl("https://staging.   .com/api/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+    }
 
-    
+    val loginAPI by lazy{
+        retrofit.create(LoginAPI::class.java)
+    }
+}
+
+Repository
+class LoginRepository {
+    suspend fun loginValidation(email: String, password: String): Response<Employee>{
+        return Instance.loginAPI.loginValidation(email, password)
+    }
+}
+
+ViewModel
+class LoginViewModel(private val repository: LoginRepository): ViewModel() {
+        val responseLogin: MutableLiveData<Response<Employee>> = MutableLiveData()
+
+        fun loginValidation(email: String, password: String){
+        viewModelScope.launch {
+            val response = repository.loginValidation(email, password)
+            responseLogin.value = response
+        }
+    }   
+}
+
+ViewModelFactory
+class LoginViewModelFactory(
+    private val repository: LoginRepository
+) : ViewModelProvider.Factory {
+    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+        return LoginViewModel(repository) as T
+    }
+}
+
+
+Activity
+val repository = LoginRepository()
+val viewModelFactory = LoginViewModelFactory(repository)
+
+viewModel = ViewModelProvider(this, viewModelFactory).get(LoginViewModel::class.java)
+viewModel.loginValidation(text_email, text_password)
+viewModel.responseLogin.observe(this, Observer { response ->
+    if (response.isSuccessful()) {
+        sharedPreferences.run {
+            put(Constant.PREF_IS_LOGIN, true)
+            put(Constant.PREF_EMPLOYEE_ID, response.body()!!.employee_id.toString())
+            put(Constant.PREF_FULLNAME, response.body()!!.fullname)
+            put(Constant.PREF_USERNAME, response.body()!!.username)
+            put(Constant.PREF_GENDER, response.body()!!.gender)
+            put(Constant.PREF_ADRESS, response.body()!!.address)
+            put(Constant.PREF_EMAIL, response.body()!!.email)
+            put(Constant.PREF_PHONE, response.body()!!.phone)
+        }
+        startActivity(Intent(this, HomeActivity::class.java))
+        finish()
+    } else {
+        textViewResponse.text = "email or passord not available"
+    }
+})
