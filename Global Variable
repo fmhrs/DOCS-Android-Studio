@@ -1,0 +1,18 @@
+// Manifest
+  <application
+        android:name=".MyApplication"
+  .
+  .
+  />
+  
+// Global Class (extends Application())
+class MyApplication: Application() {    
+    companion object {
+        var globalVar = 2
+    } 
+
+    override fun onCreate() {
+        super.onCreate()
+        // initialization code here
+    }
+}
