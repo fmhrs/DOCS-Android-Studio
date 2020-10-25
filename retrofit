@@ -27,6 +27,26 @@ interface LoginAPI {
         @Query("email") email: String,
         @Query("password") password: String
     ): Response<Employee>
+    
+    
+    // <-- POST --> DONT INSERT THIS
+    @FormUrlEncoded
+    @POST("user/edit_address/")
+    suspend fun editUserAddress(
+        @Field("user_id") user_id: Int,
+        @Field("permission") permission: String,
+        @Field("address") address: String,
+        @Field("address_detail") addressDetail: String,
+        @Field("user_latitude") user_latitude: Double,
+        @Field("user_longitude") user_longitude: Double
+    ): Response<User>
+    
+    // <-- PATH --> DONT INSERT THIS
+    @GET("user/{user_id}")
+    suspend fun getUserById(
+        @Path("user_id") userId: Int
+    ): Response<User>
+
 }
 
 Instance
