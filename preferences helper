@@ -1,0 +1,41 @@
+import android.content.Context
+import android.content.SharedPreferences
+
+class PreferencesHelper(context: Context) {
+    private var preferenceName = "SHARED_PREFERENCE_DRIVER"
+    private var sharedPref: SharedPreferences
+    private val editor: SharedPreferences.Editor
+    
+    init{
+        sharedPref = context.getSharedPreferences(preferenceName, Context.MODE_PRIVATE)
+        editor = sharedPref.edit()
+    }
+
+    fun putString(name: String, value:String){
+        editor.putString(name, value).apply()
+    }
+
+    fun putInt(name: String, value:Int){
+        editor.putInt(name, value).apply()
+    }
+
+    fun putBool(name: String, value: Boolean){
+        editor.putBoolean(name, value)
+    }
+
+    fun getString(name: String): String? {
+        return sharedPref.getString(name, null)
+    }
+
+    fun getInt(name: String): Int? {
+        return sharedPref.getInt(name, 0)
+    }
+
+    fun getBool(name: String): Boolean? {
+        return sharedPref.getBoolean(name, false)
+    }
+
+    fun clearSharedPref(){
+        editor.clear().apply()
+    }
+}
