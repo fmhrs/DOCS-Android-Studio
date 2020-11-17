@@ -1,0 +1,19 @@
+POST https://fcm.googleapis.com/fcm/send
+
+Header:
+Content-type: application/json
+Authorization: key=<your_server_key
+
+{
+  "registration_ids": ["registration_ids", "of the", "target", "device ass array"],
+  "notification": {
+    "title": "Title of your notification",
+    "body": "Content of your notification"
+  },
+  "data": {
+    "key1" : "value1",
+    "key2" : "value2",
+    "key3" : 23.56565,
+    "key4" : ture
+  }
+}
