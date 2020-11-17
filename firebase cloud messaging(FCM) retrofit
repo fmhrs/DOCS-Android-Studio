@@ -1,7 +1,7 @@
 POST https://fcm.googleapis.com/fcm/send
 
 Header:
-Content-type: application/json
+Content-Type: application/json
 Authorization: key=<your_server_key>
 
 {
