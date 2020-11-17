@@ -2,7 +2,7 @@ POST https://fcm.googleapis.com/fcm/send
 
 Header:
 Content-type: application/json
-Authorization: key=<your_server_key
+Authorization: key=<your_server_key>
 
 {
   "registration_ids": ["registration_ids", "of the", "target", "device ass array"],
