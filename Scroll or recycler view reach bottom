@@ -1,0 +1,25 @@
+// RV Reach Bottom
+// orderRecyclerView is XML @+id/
+orderRecyclreView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+    override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+        val visibleItemCount = layoutManager.childCount
+        val pastVisibleItem = layoutManager.findFirstVisibleItemPosition()
+        val lastItemPosition =  layoutManager.findLastVisibleItemPosition()
+        val total = orderAdapter.itemCount
+
+        if (!recyclerView.canScrollVertically(1)) {
+            if (visibleItemCount+pastVisibleItem>=total) {
+             // todo code here
+        }
+
+        super.onScrollStateChanged(recyclerView, newState)
+    }
+})
+
+// Nested Scroll View Reach Bottom
+// orderNestedScrollView is XML @+id/
+orderNestedScrollView.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
+    if (scrollY == v.getChildAt(0).measuredHeight - v.measuredHeight) {
+        // todo code here
+    }
+})
