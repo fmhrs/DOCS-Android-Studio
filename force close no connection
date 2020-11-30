@@ -1,0 +1,22 @@
+https://stackoverflow.com/questions/12552138/android-force-close-when-no-connection
+
+if(!isNetworkAvailable(context)){
+     // Show Toast here...
+} else {
+     //perform action ...
+}
+     
+public static boolean isNetworkAvailable(Context context) {
+     ConnectivityManager connectivity = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+     if (connectivity != null) {
+        NetworkInfo[] info = connectivity.getAllNetworkInfo();
+        if (info != null) {
+           for (int i = 0; i < info.length; i++) {
+              if (info[i].getState() == NetworkInfo.State.CONNECTED) {
+                 return true;
+              }
+           }
+        }
+     }
+     return false;
+  }
