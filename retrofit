@@ -1,0 +1,36 @@
+retrofit : https://square.github.io/retrofit/
+dummy api : https://jsonplaceholder.typicode.com/
+
+
+Dependency
+// Retrofit
+implementation 'com.squareup.retrofit2:retrofit:(insert latest version)'
+// Gson
+implementation 'com.google.code.gson:gson:2.8.6'
+
+
+
+Converter 
+Gson: com.squareup.retrofit2:converter-gson
+Jackson: com.squareup.retrofit2:converter-jackson
+Moshi: com.squareup.retrofit2:converter-moshi
+Protobuf: com.squareup.retrofit2:converter-protobuf
+Wire: com.squareup.retrofit2:converter-wire
+Simple XML: com.squareup.retrofit2:converter-simplexml
+JAXB: com.squareup.retrofit2:converter-jaxb
+
+
+
+Minimum java 8
+https://developer.android.com/studio/write/java8-support
+android {
+  ...
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
+  // For Kotlin projects
+  kotlinOptions {
+    jvmTarget = "1.8"
+  }
+}
