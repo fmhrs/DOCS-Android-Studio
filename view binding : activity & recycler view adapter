@@ -1,0 +1,47 @@
+// setup BUILD GRADLE
+android {
+    ...
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+
+// MAIN ACTIVITY
+class MainActivity : AppCompatActivity() {
+    private var bind : ActivityMainBinding
+    // why not just var bind = ActivityMainBinding.inflate(layoutInflater)
+    // because layout inflater just can be used after super.onCreate(savedInstanceState)
+    
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        bind = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(bind.root)
+        // why bind.root
+        // because .root is special place for save layout on bind
+    }
+}
+
+
+
+// RECYCLER VIEW
+class RVPosts(val listPost: List<ModelPost>) : RecyclerView.Adapter<RVPosts.viewHolder>() {
+    private var _binding: ItemPostBinding? = null
+    private val bind get() = _binding!!
+
+    inner class viewHolder(binding: ItemPostBinding) : RecyclerView.ViewHolder(binding.root)
+    // NB : the normal VH is itemView : ViewHolder then return the itemView
+    //      name of the layout is item_post.xml so the binding is ItemPostBinding
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): viewHolder {
+        _binding = ItemPostBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return viewHolder(bind)
+    }
+
+    override fun onBindViewHolder(holder: viewHolder, position: Int) {
+        bind.iPostTitle.text = listPost[position].title
+        bind.iPostBody.text = listPost[position].body
+    }
+
+    override fun getItemCount(): Int = listPost.size
+}
