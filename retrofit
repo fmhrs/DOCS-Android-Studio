@@ -64,32 +64,32 @@ object Instance {
 
 MAIN ACTIVITY
 fun callApi(){
-        isLoading(true)
-        
-        // NB : use retrofit2 Callback 
-        Instance.ApiTypicode.getPosts().enqueue(object : Callback<List<ModelPost>> {
-            override fun onResponse( 
-                call: Call<List<ModelPost>>,
-                response: Response<List<ModelPost>>
-            ) {
-                if (response.isSuccessful) {
-                    response.body()?.let {
-                        rvPost(it)
-                    } ?: run {
-                        Toast.makeText(
-                            this@MainActivity,
-                            "Server don't have any data",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
-                }
-                isLoading(false)
-            }
+    isLoading(true)
 
-            override fun onFailure(call: Call<List<ModelPost>>, t: Throwable) {
-                Toast.makeText(this@MainActivity, "fail get data from server", Toast.LENGTH_SHORT)
-                    .show()
-                isLoading(false)
+    // NB : use retrofit2 Callback 
+    Instance.ApiTypicode.getPosts().enqueue(object : Callback<List<ModelPost>> {
+        override fun onResponse( 
+            call: Call<List<ModelPost>>,
+            response: Response<List<ModelPost>>
+        ) {
+            if (response.isSuccessful) {
+                response.body()?.let {
+                    rvPost(it)
+                } ?: run {
+                    Toast.makeText(
+                        this@MainActivity,
+                        "Server don't have any data",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
             }
-        })
-    }
+            isLoading(false)
+        }
+
+        override fun onFailure(call: Call<List<ModelPost>>, t: Throwable) {
+            Toast.makeText(this@MainActivity, "fail get data from server", Toast.LENGTH_SHORT)
+                .show()
+            isLoading(false)
+        }
+    })
+}
