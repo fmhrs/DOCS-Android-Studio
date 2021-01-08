@@ -1,14 +1,21 @@
 retrofit : https://square.github.io/retrofit/
 dummy api : https://jsonplaceholder.typicode.com/
 
+//=============================================================================
 
 Dependency
-// Retrofit
-implementation 'com.squareup.retrofit2:retrofit:(insert latest version)'
-// Gson
-implementation 'com.google.code.gson:gson:2.8.6'
-NB: use "com.squareup.retrofit2:converter-gson" instead "com.google.code.gson:gson:" on implementation
 
+// Retrofit https://square.github.io/retrofit/
+implementation 'com.squareup.retrofit2:retrofit:(insert latest version)'
+
+// Gson NB: use "com.squareup.retrofit2:converter-gson" instead "com.google.code.gson:gson:" on implementation
+implementation 'com.google.code.gson:gson:2.8.6'
+
+// OKHttp3 https://github.com/square/okhttp
+implementation("com.squareup.okhttp3:okhttp:4.9.0")
+implementation("com.squareup.okhttp3:logging-interceptor:4.9.0")
+
+//=============================================================================
 
 Converter 
 Gson: com.squareup.retrofit2:converter-gson
@@ -19,7 +26,7 @@ Wire: com.squareup.retrofit2:converter-wire
 Simple XML: com.squareup.retrofit2:converter-simplexml
 JAXB: com.squareup.retrofit2:converter-jaxb
 
-
+//=============================================================================
 
 Minimum java 8
 https://developer.android.com/studio/write/java8-support
@@ -35,6 +42,7 @@ android {
   }
 }
 
+//=============================================================================
 
 
 
@@ -50,8 +58,21 @@ object Instance {
     val baseUrl = "https://jsonplaceholder.typicode.com/"
 
     val retrofit by lazy {
+        //* start of OkHttp *//
+        // setup chain interceptor using HTTPLoggingInterceptor
+        val interceptor = HttpLoggingInterceptor()
+        interceptor.level = HttpLoggingInterceptor.Level.BODY
+
+        // setup client
+        val client = OkHttpClient.Builder()
+            .addInterceptor(interceptor)
+            .build()
+        //* end of OkHttp *//
+    
+    
         Retrofit.Builder()
                 .baseUrl(baseUrl)
+                .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
     }
