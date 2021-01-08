@@ -7,7 +7,7 @@ Dependency
 implementation 'com.squareup.retrofit2:retrofit:(insert latest version)'
 // Gson
 implementation 'com.google.code.gson:gson:2.8.6'
-
+NB: use "com.squareup.retrofit2:converter-gson" instead "com.google.code.gson:gson:" on implementation
 
 
 Converter 
@@ -34,3 +34,62 @@ android {
     jvmTarget = "1.8"
   }
 }
+
+
+
+
+API ENDPOINT
+interface ApiEndpoint {
+    @GET("/posts")
+    fun getPosts(): Call<List<ModelPost>>
+}
+
+
+API INSTANCE
+object Instance {
+    val baseUrl = "https://jsonplaceholder.typicode.com/"
+
+    val retrofit by lazy {
+        Retrofit.Builder()
+                .baseUrl(baseUrl)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+    }
+
+    val ApiTypicode by lazy {
+        retrofit.create(ApiEndpoint::class.java)
+    }
+}
+
+
+MAIN ACTIVITY
+fun callApi(){
+        isLoading(true)
+        
+        // NB : use retrofit2 Callback 
+        Instance.ApiTypicode.getPosts().enqueue(object : Callback<List<ModelPost>> {
+            override fun onResponse( 
+                call: Call<List<ModelPost>>,
+                response: Response<List<ModelPost>>
+            ) {
+                if (response.isSuccessful) {
+                    response.body()?.let {
+                        rvPost(it)
+                    } ?: run {
+                        Toast.makeText(
+                            this@MainActivity,
+                            "Server don't have any data",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+                isLoading(false)
+            }
+
+            override fun onFailure(call: Call<List<ModelPost>>, t: Throwable) {
+                Toast.makeText(this@MainActivity, "fail get data from server", Toast.LENGTH_SHORT)
+                    .show()
+                isLoading(false)
+            }
+        })
+    }
