@@ -1,0 +1,11 @@
+override fun onBindViewHolder(holder: viewHolder, position: Int) {
+    ...
+    val params = binding.body.layoutParams as FrameLayout.LayoutParams
+    if(position==listPost.lastIndex){
+      params.topMargin = 24
+      params.bottomMargin = 24
+    } else {
+      params.topMargin = 24
+    }
+    binding.body.layoutParams = params
+}
