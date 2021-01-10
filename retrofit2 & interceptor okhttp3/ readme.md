@@ -3,7 +3,6 @@
 ### build gradle
 > Original Url untuk retrofit2, okHttp3,
 >> retrofit2 : https://square.github.io/retrofit/ <br>
-oKHttp3 https://github.com/square/okhttp <br>
 open api : https://jsonplaceholder.typicode.com/ <br>
 interceptor : https://github.com/square/okhttp/tree/master/okhttp-logging-interceptor
 
