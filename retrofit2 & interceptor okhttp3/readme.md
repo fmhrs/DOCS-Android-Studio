@@ -28,6 +28,7 @@ dependencies {
 }
 ```
 <br>
+
 ### configurasi retrofit
 
 > configurasi minimum saat menggunakan retrofit adalah java 8.
@@ -49,6 +50,7 @@ android {
 ```
 
 <br>
+
 ## code
 
 ### Modal Posts
@@ -64,7 +66,9 @@ data class ModalPosts (
     var body: String? = null,
 )
 ```
+
 <br>
+
 ### Interface Typicode
 > `@GET` merupakan metode pengiriman yang di gunakan dalam pemanggilan ke dalam server. <br>
 `('posts')` adalah alamat url yang di panggil setelah penulisan base url.
@@ -76,6 +80,7 @@ interface Typicode {
     fun getPosts(): Call<List<ModalPosts>>
 }
 ```
+
 <br>
 
 ### Object API Services
@@ -113,7 +118,9 @@ object ApiService {
     }
 }
 ```
+
 <br>
+
 ### Main Activity
 > `isLoading()` hanya sekedar function untuk menampilkan `ProgressBar` jadi tidak perlu di tuliskan.
 
