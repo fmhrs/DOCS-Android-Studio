@@ -5,6 +5,7 @@
 >> retrofit2 : https://square.github.io/retrofit/ <br>
 oKHttp3 https://github.com/square/okhttp <br>
 dummy api : https://jsonplaceholder.typicode.com/ <br>
+interceptor : https://github.com/square/okhttp/tree/master/okhttp-logging-interceptor
 
 > Converter pada retrofit
 >> Gson: com.squareup.retrofit2:converter-gson <br> 
