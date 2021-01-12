@@ -5,7 +5,7 @@
 4. [Fragment](https://github.com/fmhrs/android-studio-code/tree/master/fragment) replace view pada attribute xml **FrameLayout**.
 
 
-## Pendding
+## Pending
 1. listview
 2. recyclerview
 3. data access objct (Dao) Room
