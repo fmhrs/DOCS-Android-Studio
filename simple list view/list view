@@ -1,0 +1,5 @@
+1. create listview attribute di xml
+2. create array string
+3. add adapter using ArrayAdapter on listview
+
+listview.adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, <array-string>)
