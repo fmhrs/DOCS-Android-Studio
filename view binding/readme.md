@@ -1,4 +1,4 @@
-# Android Studio 4.1 : Data Binding "Activity" & "RV.Adapter"
+# Android Studio 4.1 : Data Binding "Activity", **Fragment** & "RV.Adapter"
 ### setup build gradle
 > pengaktifan "viewBinding" dalam build gradle
 >> untuk penulisan pada build gradle tidak ada concat, <br>
@@ -73,5 +73,41 @@ class RVPosts(val listPost: List<ModelPost>) : RecyclerView.Adapter<RVPosts.view
     }
 
     override fun getItemCount(): Int = listPost.size
+}
+```
+
+<br>
+
+### Fragment
+> pada fragment ada 3 bentuk overide function yang harus di perhatikan
+>> `onCreate` : di saat fragment itu terbentuk
+>>
+>> `onCreateView` : fungsi pembentukan tampilan pada android
+>>
+>> `onViewCreated` : fungsi bahwa pembentukan fragment telah selesai, sama serpeti `Activity#onCreate`
+>>
+>>> mulai dari `onViewCreated` kita sudah bisa memasangkan algoritma programing kita ke dalam file `fragment`<br> yang attribute xml nya telah memiliki `id`.
+>>>
+>>> untuk fungsi bawa'an `fragment` selain yang tertera di atas <br> 
+kalian bisa melihat penjelasan lebih detailnya di [dokumentasi fragment android studio](https://developer.android.com/reference/android/app/Fragment).
+```
+class FragmentA: Fragment() {
+    lateinit var  binding : FragmentABinding
+    
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = FragmentABinding.inflate(layoutInflater)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.textview.setOnClickListener {
+            binding.textview.text = "plus ultraa"
+        }
+    }
 }
 ```
