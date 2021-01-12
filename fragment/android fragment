@@ -1,0 +1,10 @@
+1. Frame Layot xml
+2. create class extnds fragment and layout resource file
+3. create supportFragmentManager
+
+supportFragmentManager.beginTransaction
+    .replace(
+        binding.layout_id.id,
+        fragmentclass()
+    ).commit()
+    
