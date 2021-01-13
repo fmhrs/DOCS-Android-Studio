@@ -1,0 +1,5 @@
+1. buat button pada xml untuk pindah activity
+2. buat setoncliklistener pada java
+3. buat fungsi startActivity() untuk berpindah dari 1 aktivity ke aktivity lain
+4. parameter startActivity pertama adalah context dari activity kita
+5. parameter startActivity kedua adalah class yang akan di masuki
