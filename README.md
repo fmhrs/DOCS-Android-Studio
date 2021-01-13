@@ -4,7 +4,7 @@
 3. [Shared Preferences](https://github.com/fmhrs/android-studio-code/tree/master/preferences%20helper) sebuah **SESSION**  atau penyimpanan lokal sederhana pada **Mobile Aplication**.
 4. [Fragment](https://github.com/fmhrs/android-studio-code/tree/master/fragment) replace view pada attribute xml **FrameLayout**.
 5. [Simple List View](https://github.com/fmhrs/android-studio-code/tree/master/simple%20list%20view) mengubah kumpulan data atau **Array** string menjadi bentuk list dalam **View-Android**.
-6. [Intent](https://github.com/fmhrs/android-studio-code/tree/master/intent) berpindah dari satu **activity** ke target yang diinginkan
+6. [Intent](https://github.com/fmhrs/android-studio-code/tree/master/intent) berpindah dari satu **activity** ke target yang diinginkan.
 
 ## Pending
 1. recyclerview
