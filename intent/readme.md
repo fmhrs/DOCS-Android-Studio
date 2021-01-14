@@ -1,4 +1,4 @@
-# Intent implicit, explicit, & parcelable
+# Intent explicit, extra, inplicit, & parcelable
 
 ### Intent Explicit
 
