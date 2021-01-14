@@ -19,9 +19,9 @@ binding.buttonSave.setOnClickListener {
 }
 ```
 
-### Intent Extra
+## Intent Extra
 
-#### putExtra
+### putExtra
 > Selain menentukan lokasi untuk berpindah, intent juga dapat membawa beberapa data saat berpindah lokasi 
 >
 > Cara paling sederhana untuk membawa attribut adalah dengan menggunakan fungsi `putExtra()` milik intent
@@ -45,7 +45,7 @@ startActivity(intent)
 
 ```
 
-#### getExtra
+### getExtra
 > untuk pengambilan data kita menggunakan fungsi `.get` setelah `intent`lalu di lanjut dengan `dataType` lalu di tutup dengan `Extra` <br>
 contoh untuk pengambilan data type string adalah `val data = intent.getStringExtra()`
 >> didalam `get...Estra()` kita menuliskan nama variable ingin kita ambil nilainya <br> 
