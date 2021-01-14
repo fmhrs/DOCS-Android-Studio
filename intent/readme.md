@@ -30,7 +30,9 @@ binding.buttonSave.setOnClickListener {
 >> parameter pertama `putExtra()` adalah string yang berfungsi sebagai `variable` saat pengambilan data di lokasi `intent` berikutnya
 >>
 >> parameter kedua `putExtra()` adalah value dari `varible` yang ditulis di parameter pertama.
-
+>>> NB : untuk yang mengirim data menggunakan `variable` yang didapat dari `TextView.text` <br>
+jangan lupa untuk menutupnya dengan `toString` jika tidak maka data tidak bisa diambil dengan `getStringExtra` <br>
+>> karena `data type` dari `TextView.text` adalah `Editable?` bukan `String`
 ```
 // deklarasi intent
 val intent = Intent(this, ProfileActivity::class.java)
