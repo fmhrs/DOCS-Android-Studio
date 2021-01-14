@@ -11,4 +11,5 @@
 2. data access objct (Dao) Room
 3. intent implicit, & parcelable
 4. tablayout & viewpager2
+5. nested scroll view untuk menghindari isue recycler view item tidak tampil semua
 
