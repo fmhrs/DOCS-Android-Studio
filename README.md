@@ -9,7 +9,6 @@
 ## Pending
 1. recyclerview
 2. data access objct (Dao) Room
-3. intent implicit, & parcelable
-4. tablayout & viewpager2
-5. nested scroll view untuk menghindari isue recycler view item tidak tampil semua
+3. intent implicit
+4. nested scroll view untuk menghindari isue recycler view item tidak tampil semua
 
