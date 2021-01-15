@@ -9,6 +9,5 @@
 ## Pending
 1. recyclerview
 2. data access objct (Dao) Room
-3. intent implicit
-4. tablayout & viewpager2
+3. tablayout & viewpager2
 
