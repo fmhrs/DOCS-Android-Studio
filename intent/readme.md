@@ -1,6 +1,8 @@
 # Intent explicit, extra, inplicit, & parcelable
 
-### Intent Explicit
+<br>
+
+## Intent Explicit
 
 > untuk pindah dari satu aktivity ke aktivity kita menggunakan fungsi `startActivity()`
 >> fungsi `startActivity()` membutuhkan sebuah parameter `Intent` untuk pindah dari satu activity ke activity lainya.
@@ -18,6 +20,8 @@ binding.buttonSave.setOnClickListener {
     startActivity(intent)
 }
 ```
+
+<br>
 
 ## Intent Extra
 
@@ -57,6 +61,8 @@ val fullname = intent.getStringExtra("fullname")
 val address = intent.getStringExtra("address")
 val phone = intent.getStringExtra("phone")
 ```
+
+<br>
 
 ## Intent Parcelable
 
@@ -119,4 +125,22 @@ val address = mParcel?.address
 val phone = mParcel?.phone
 ```
 
+<br>
+
+## intent implicit
+
+> berbeda dengan `intent` explicit, target dari `intent` implicit bukanlah `activity` di dalam apk kita <br>
+melainkan diluar apk kita, seperti kontak, atau browser.
+>> kita mengubah parameter pertama fungsi `Intent()` dari `this` ke `Intent.ACTION_VIEW`
+>> 
+>> lalu pada parameter kedua disini kita ingin mengarahkan ke browser maka menggunakan `Uri.parse()`<br>
+lalu di dalam `Uri.parse()` kita dapat mengetikan url yang ingin kita kunjungi pada browser.
+>>> untuk lebih lengkapnya bisa kunjungi dokumentasi [Android Studio](https://developer.android.com/training/basics/intents/sending?hl=id)
+
+```
+binding.textviewGithub.setOnClickListener{  // intent implicit
+    val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/fmhrs"))
+    startActivity(intent)
+}
+```
 
