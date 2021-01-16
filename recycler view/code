@@ -1,0 +1,160 @@
+// Main Activity xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    tools:context=".MainActivity">
+
+    <com.google.android.material.textview.MaterialTextView
+        style="@style/TextAppearance.AppCompat.Headline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Recycler View" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview"
+        android:layout_marginTop="24dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>
+
+
+// Adapter Murid . xml
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    android:elevation="12dp"
+    app:cardUseCompatPadding="true"
+    app:cardCornerRadius="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="14dp"
+        android:orientation="vertical">
+
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/TextAppearance.AppCompat.Body1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nama"
+            android:textColor="@android:color/secondary_text_light_nodisable" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/nama"
+            style="@style/TextAppearance.AppCompat.Large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="nama_murid" />
+
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/TextAppearance.AppCompat.Body1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="Alamat"
+            android:textColor="@android:color/secondary_text_light_nodisable" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/alamat"
+            style="@style/TextAppearance.AppCompat.Large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="alamat_murid" />
+
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/TextAppearance.AppCompat.Body1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="Nomor Handphone"
+            android:textColor="@android:color/secondary_text_light_nodisable" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/telpon"
+            style="@style/TextAppearance.AppCompat.Large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nomor_Hanphone" />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
+
+
+// Data Murid .kt
+package com.aljayafood.recyclerview
+
+data class DataMurid(
+    val nama: String? = null,
+    val alamat: String? = null,
+    val telpon: String? = null,
+)
+
+// Murid Adapter .kt
+package com.aljayafood.recyclerview
+
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
+import com.aljayafood.recyclerview.databinding.AdapterMuridBinding
+
+class MuridAdapter(
+    val listMurid: List<DataMurid>
+) : RecyclerView.Adapter<MuridAdapter.ViewHolder>() {
+    inner class ViewHolder(binding: AdapterMuridBinding) : RecyclerView.ViewHolder(binding.root)
+
+    lateinit var binding: AdapterMuridBinding
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        binding = AdapterMuridBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ViewHolder(binding)
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        binding.nama.text = listMurid[position].nama
+        binding.alamat.text = listMurid[position].alamat
+        binding.telpon.text = listMurid[position].telpon
+    }
+
+    override fun getItemCount(): Int = listMurid.size
+}
+
+
+// Main Activity .kt
+package com.aljayafood.recyclerview
+
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.aljayafood.recyclerview.databinding.ActivityMainBinding
+
+class MainActivity : AppCompatActivity() {
+
+    lateinit var binding : ActivityMainBinding
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+
+        val listMurid= listOf<DataMurid>(
+            DataMurid("Fuad Mahrus Fathoni", "taman sidoarjo", "0123321123"),
+            DataMurid("M Darojatun Hogi", "kureksari waru", "08123987312"),
+            DataMurid("Ardeno Rama", "candi sidoarjo", "03123456234"),
+            DataMurid("Fuad Mahrus Fathoni", "taman sidoarjo", "0123321123"),
+            DataMurid("M Darojatun Hogi", "kureksari waru", "08123987312"),
+            DataMurid("Ardeno Rama", "candi sidoarjo", "03123456234")
+        )
+
+        binding.recyclerview.layoutManager = LinearLayoutManager(this)
+        binding.recyclerview.adapter = MuridAdapter(listMurid)
+
+    }
+}
