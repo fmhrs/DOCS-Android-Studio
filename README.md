@@ -5,11 +5,10 @@
 4. [Fragment](https://github.com/fmhrs/android-studio-code/tree/master/fragment) replace view pada attribute xml **FrameLayout**.
 5. [Simple List View](https://github.com/fmhrs/android-studio-code/tree/master/simple%20list%20view) mengubah kumpulan data atau **Array** string menjadi bentuk list dalam **View-Android**.
 6. [Intent](https://github.com/fmhrs/android-studio-code/tree/master/intent) berpindah dari satu **activity** ke target yang diinginkan.
-
-## Pending
-1. recyclerview
-2. data access objct (Dao) Room
-3. tablayout & viewpager2
-4. mvvm
-5. coroutine
-7. dager
+7. [Recycler View](https://github.com/fmhrs/android-studio-code/tree/master/recycler%20view) custom listview
+## Pending 
+1. data access objct (Dao) Room
+2. tablayout & viewpager2
+3. mvvm
+4. coroutine
+5. dager
