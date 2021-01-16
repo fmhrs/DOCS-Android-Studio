@@ -10,4 +10,6 @@
 1. recyclerview
 2. data access objct (Dao) Room
 3. tablayout & viewpager2
-
+4. mvvm
+5. coroutine
+7. dager
