@@ -57,14 +57,13 @@ lalu mereturn `(bind.root)` menggunakan ecyclerView.ViewHolder.
 
 ```
 class RVPosts(val listPost: List<ModelPost>) : RecyclerView.Adapter<RVPosts.viewHolder>() {
-    private var _binding: ItemPostBinding? = null
-    private val bind get() = _binding!!
+    private var binding: ItemPostBinding? = null
 
     inner class viewHolder(binding: ItemPostBinding) : RecyclerView.ViewHolder(binding.root)
     
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): viewHolder {
-        _binding = ItemPostBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return viewHolder(bind)
+        binding = ItemPostBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return viewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: viewHolder, position: Int) {
