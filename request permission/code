@@ -43,7 +43,6 @@ class MainActivity : AppCompatActivity() {
 // jika melakukan perizinan secara bersamaan
 // dapat ubah requestPermission() menjadi
  private fun requestPermission() {
-        Toast.makeText(this, "button clicked", Toast.LENGTH_SHORT).show()
         var listPermission = mutableListOf<String>()
         if (checkSelfPermission(android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
             Log.d(TAG, "checkCameraPermission: camera has granted");
@@ -55,5 +54,7 @@ class MainActivity : AppCompatActivity() {
         } else {
             listPermission.add(android.Manifest.permission.INTERNET)
         }
-        ActivityCompat.requestPermissions(this, listPermission.toTypedArray(), 0)
+        if(listPermission.isNotEmpty()){
+            ActivityCompat.requestPermissions(this, listPermission.toTypedArray(), 0)
+        }
     }
