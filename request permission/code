@@ -1,1 +1,59 @@
+// jika melakukan perizinan secara terpisah
+class MainActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityMainBinding
+    private val TAG = "myPermission"
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        binding.buttonRequestCamera.setOnClickListener {
+            requestPermission()
+            ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.CAMERA), 0)
+        }
+        binding.buttonRequestInternet.setOnClickListener { 
+            requestPermission()
+            ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.INTERNET), 1)
+        }
+    }
+
+    private fun requestPermission() {
+        Toast.makeText(this, "button clicked", Toast.LENGTH_SHORT).show()
+        if (checkSelfPermission(android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+            Log.d(TAG, "checkCameraPermission: camera has granted");
+        }
+        if (checkSelfPermission(android.Manifest.permission.INTERNET) == PackageManager.PERMISSION_GRANTED) {
+            Log.d(TAG, "checkCameraPermission: internet has granted");
+        }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        for (i in grantResults.indices){
+            Log.d(TAG, "onRequestPermissionsResult: loop grantResult - $i")
+            if(grantResults[i] == PackageManager.PERMISSION_GRANTED) {
+                Log.d(TAG, "onRequestPermissionsResult: ${permissions[i]} is granted")   
+            }
+        }
+    }
+}
+
+
+// jika melakukan perizinan secara bersamaan
+// dapat ubah requestPermission() menjadi
+ private fun requestPermission() {
+        Toast.makeText(this, "button clicked", Toast.LENGTH_SHORT).show()
+        var listPermission = mutableListOf<String>()
+        if (checkSelfPermission(android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+            Log.d(TAG, "checkCameraPermission: camera has granted");
+        } else {
+            listPermission.add(android.Manifest.permission.CAMERA)
+        }
+        if (checkSelfPermission(android.Manifest.permission.INTERNET) == PackageManager.PERMISSION_GRANTED) {
+            Log.d(TAG, "checkCameraPermission: internet has granted");
+        } else {
+            listPermission.add(android.Manifest.permission.INTERNET)
+        }
+        ActivityCompat.requestPermissions(this, listPermission.toTypedArray(), 0)
+    }
