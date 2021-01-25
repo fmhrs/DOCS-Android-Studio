@@ -33,7 +33,7 @@ parameter yang diperlukan dalam fungsi `requestPermission()` adalah
 ```
     // pada arrayOf dapat ditambahkan izin selain camera bilau perlu, contohnya seperti
     //arrayOf(android.Manifest.permission.CAMERA, android.Manifest.permission.INTERNET).
-    ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.CAMERA), 0)
+    requestPermissions(this, arrayOf(android.Manifest.permission.CAMERA), 0)
 ```
 
 ### Izin telah diberikan
