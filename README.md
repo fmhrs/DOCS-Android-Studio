@@ -12,4 +12,3 @@
 3. mvvm
 4. coroutine
 5. dager
-7. request permission
