@@ -8,7 +8,7 @@
 7. [Recycler View](https://github.com/fmhrs/android-studio-code/tree/master/recycler%20view) custom listview
 ## Pending 
 1. data access objct (Dao) Room
-2. tablayout & viewpager2
+2. tablayout 
 3. mvvm
 4. coroutine
 5. dager
