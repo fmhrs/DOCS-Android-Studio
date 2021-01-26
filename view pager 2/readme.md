@@ -17,15 +17,20 @@ utnuk melakukan pemasangan viewpager pada android studio, sama seperti pemasanga
     android:overScrollMode="never" />
 ```
 
-### Penulisan kotlin
+<br>
+
+### Penulisan kotlin : recycler view (adapter)
 tidak seperti recyclerview yang harus menuliskan layout manager, pada view pager kita hanya perlu memasangkan adapter ke dalam widget.
+#### MainActivity
 ```
 val listNews = mutableListOf<ModelNews>()
 listNews.add(
     ModelNews(
         R.drawable.view_pager_android_studio,
         "Android Studio",
-        "Android Studio adalah Integrated Development Enviroment untuk sistem operasi Android, yang dibangun di atas perangkat lunak JetBrains IntelliJ IDEA dan didesain khusus untuk pengembangan Android."
+        "Android Studio adalah Integrated Development Enviroment untuk sistem operasi Android," + 
+        "yang dibangun di atas perangkat lunak JetBrains IntelliJ IDEA dan didesain khusus untuk" +
+        "pengembangan Android."
     )
 )
 ...
@@ -33,10 +38,9 @@ listNews.add(
 binding.viewpager.adapter = AdapterNews(listNews)
 ```
 
-### Pembuatan adapter
-pada pemubatan adapter kita bisa menggunakan berbagai macam adapter, termasuk `RecyclerView.Adpater` dan juga `FragmentStateAdapter`
+#### RecyclerView adapter
+pada pemubatan adapter viewpager2 bisa menggunakan berbagai macam adapter, termasuk `RecyclerView.Adpater` dan juga `FragmentStateAdapter`
 
-#### RecyclerView.Adapter
 ```
 class AdapterNews(
     val listNews: MutableList<ModelNews>
@@ -58,4 +62,94 @@ class AdapterNews(
     override fun getItemCount(): Int = listNews.size
 }
 ```
-#### FragmentStateAdapter (onProgress)
+
+<br>
+
+### Penulisan kotlin : FragmentStateAdapter (adapter)
+jika menggunakan `FragmentStateAdapter` sebagai gantinya `RecyclerView.Adapter` maka file kotlin yang membawa widget `viewpager2` diganti extends class nya dari `:AppCompatActivity()` menjadi `FragmentActivity()`
+#### MainFragment: FragmentActivity()
+
+```
+class MainFragment: FragmentActivity() {
+    private lateinit var binding : FragmentActivityMainBinding
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = FragmentActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        val listFragment = mutableListOf<Fragment>()
+        listFragment.add(FragmentA())
+        listFragment.add(FragmentB())
+
+        val adapter = AdapterFragment(this, listFragment)
+        binding.viewPager.adapter = adapter
+
+        TabLayoutMediator(binding.tabLayout, binding.viewPager){ tab: TabLayout.Tab, i: Int ->
+            if (i == 0) tab.text = "Fragment A"
+            if (i == 1) tab.text = "Fragment B"
+        }.attach()
+    }
+}
+```
+
+
+#### FragmentStateAdapter 
+selain menggunakan `RecyclerView` sebagai adapter, `ViewPager` juga bisa menggunakan `FragmentStateApdapter` sebagai adapternya, namun `FragmetnStateAdapter` memiliki 3 kombinasi constructor yang bisa digunakan<br>
+
+|Public constructors|
+|-|
+|`FragmentStateAdapter(FragmentActivity fragmentActivity)`|
+|`FragmentStateAdapter(Fragment fragment)`|
+|`FragmentStateAdapter(FragmentManager fragmentManager, Lifecycle lifecycle)`|
+
+```
+class AdapterFragment(
+    fragmentActivity: FragmentActivity,
+    var listFragment: MutableList<Fragment>
+): FragmentStateAdapter(fragmentActivity){
+    override fun getItemCount(): Int = listFragment.size
+    override fun createFragment(position: Int): Fragment = listFragment[position]
+}
+```
+
+
+## PageTransformer
+agar dapat menampilkan item `viewpager` selain item yang yang terpilih maka pada xml file ditambahkan <br>
+`android:clipToPadding="false"`<br>
+`android:clipChildren="false"`<br>
+`android:overScrollMode="never"`
+
+```
+<androidx.viewpager2.widget.ViewPager2
+    android:id="@+id/viewpager"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clipToPadding="false"
+    android:clipChildren="false"
+    android:foregroundGravity="center"
+    android:orientation="horizontal"
+    android:overScrollMode="never" />
+```
+untuk memberikan beberapa perubahan pada tampilan `viewpager2` kita bisa memggumakan attribut `compositePageTransformer`.
+
+```
+val compositePageTransformer = CompositePageTransformer()
+compositePageTransformer.addTransformer(MarginPageTransformer(120))
+compositePageTransformer.addTransformer(transformer(listNews.size))
+
+binding.viewpager.setPageTransformer(compositePageTransformer)
+```
+`PageTransformer` bisa di kombinasikan kedalam `addTransformer()` namun bisa juga langsung di padsang kedalam `viewpager.setPageTransformer()`
+```
+inner class transformer(val listSize: Int): ViewPager2.PageTransformer{
+    override fun transformPage(page: View, position: Float) {
+        if(binding.viewpager.currentItem == 0){
+            page.setTranslationX(-80f)
+        } else if (binding.viewpager.currentItem == listSize-1){
+            page.setTranslationX(80f)
+        } else {
+            page.setTranslationX(0f);
+        }
+    }
+}
+```
