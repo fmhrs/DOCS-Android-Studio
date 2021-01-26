@@ -1,0 +1,3 @@
+// view pager 2 on xml
+// view pager adapter on MainActivity.kt
+// adapter using RecyclerViewAdapter / FragmentStateAdapter
