@@ -112,6 +112,20 @@ class AdapterFragment(
 }
 ```
 
+## Tab Layout
+`TabLayout` dapat diintegrasikan dengan `ViewPager2` dengan menggunakan `TabLayoutMediator`
+### Penulisan xml
+```
+<com.google.android.material.tabs.TabLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="top" />
+```
+### Penulisan kotlin
+```
+TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+}.attach()
+```
 
 ## PageTransformer
 agar dapat menampilkan item `viewpager` selain item yang yang terpilih maka pada xml file ditambahkan <br>
