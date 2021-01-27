@@ -6,9 +6,10 @@
 5. [Simple List View](https://github.com/fmhrs/android-studio-code/tree/master/simple%20list%20view) mengubah kumpulan data atau **Array** string menjadi bentuk list dalam **View-Android**.
 6. [Intent](https://github.com/fmhrs/android-studio-code/tree/master/intent) berpindah dari satu **activity** ke target yang diinginkan.
 7. [Recycler View](https://github.com/fmhrs/android-studio-code/tree/master/recycler%20view) custom listview
+8. [ViewPager2](https://github.com/fmhrs/android-studio-code/tree/master/view%20pager%202) menggeser tampilan halaman item adapter dan konfigurasi dengan tab layout.
 ## Pending 
 1. data access objct (Dao) Room
-2. tablayout 
-3. mvvm
-4. coroutine
-5. dager
+2. mvvm
+3. coroutine
+4. dager
+5. navitagion component
