@@ -1,0 +1,18 @@
+https://developer.android.com/guide/navigation/navigation-pass-data?hl=id
+
+buildscript {
+    repositories {
+        google()
+    }
+    dependencies {
+        def nav_version = "2.3.2"
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
+    }
+}
+
+
+// on build gradle
+apply plugin: "androidx.navigation.safeargs"
+
+// Atau, untuk menghasilkan kode Kotlin yang cocok dengan modul khusus Kotlin tambahkan:
+apply plugin: "androidx.navigation.safeargs.kotlin"
