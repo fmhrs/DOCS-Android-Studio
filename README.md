@@ -13,3 +13,7 @@
 3. coroutine
 4. dager
 5. navitagion component
+6. material desing on click animation
+7. custom material desing dialog
+8. connect web socket
+9. 
