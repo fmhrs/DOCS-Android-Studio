@@ -144,6 +144,26 @@ class MuridAdapter(
 }
 ```
 
+### Intent Using `viewBinding`
+> untuk menggunakan startActivity gunakan Context dari Activity yang menggunakan RV adapter
+>> jangan lupa tambahkan `val context: Context` di parameter class
+```
+class MuridAdapter(
+    val context: Context
+    val listMurid: List<DataMurid>
+) : RecyclerView.Adapter<MuridAdapter.ViewHolder>() {
+    ...
+    
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        ...
+        
+        binding.buttonToSecondActivity.setOnClickListener {
+            context.startActivity(this, SecondActivity::class.java)
+        }
+    }
+}
+```
+
 
 ### MainActivity Kotlin
 > `listMurid` adalah tempat data yang akan di tampilkan ke dalam Recycler View 
