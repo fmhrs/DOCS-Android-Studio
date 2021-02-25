@@ -144,7 +144,7 @@ class MuridAdapter(
 }
 ```
 
-### Intent Using `viewBinding`
+### Intent Recycler View - `viewBinding`
 > untuk menggunakan startActivity gunakan Context dari Activity yang menggunakan RV adapter
 >> jangan lupa tambahkan `val context: Context` di parameter class
 ```
