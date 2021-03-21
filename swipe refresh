@@ -27,20 +27,26 @@ dependencies {
 
 
 
-
+// Java class extends SwipeRefreshLayout.OnRefreshListener{
 
 
 
 orderSwipeRefresh.setOnRefreshListener(this)
 
 orderNestedScrollView.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
-            if (scrollY == v.getChildAt(0).measuredHeight - v.measuredHeight) {
-                // todo WHEN REACH [LATEST ITEM]
-                if (!isLoading) {
-                    isLoading = true
-                    orderPage++
-                    getOrder()
+    if (scrollY == v.getChildAt(0).measuredHeight - v.measuredHeight) {
+        // todo WHEN REACH [LATEST ITEM]
+        if (!isLoading) {
+            isLoading = true
+            orderPage++
+            getOrder()
 
-                }
-            }
-        })
+        }
+    }
+})
+
+override fun onRefresh() {
+    isLoading = true
+}
+
+binding.swipeRefresh.isRefreshing = false
