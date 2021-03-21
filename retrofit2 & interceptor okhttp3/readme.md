@@ -81,6 +81,18 @@ interface Typicode {
 }
 ```
 
+> kalau mengirim data gunakan @body untuk get, dan unakan @Field untuk post.
+> kalau menggunakan @Field tambahkan juga @FormUrlEncoded
+> NB : modul ini hanya info tambahan, bukan termasuk pengambilan data pada typicode
+```
+@FormUrlEncoded
+@POST ("login")
+fun login(
+    @Field("username") username: String,
+    @Field("password") passsword: String
+): Call<dataPengguna>
+```
+
 <br>
 
 ### Object API Services
