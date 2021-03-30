@@ -18,3 +18,4 @@
 8. connect web socket
 9. Coil
 10. maps
+11. table (image inside table) addView(view, width, height)
