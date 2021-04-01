@@ -1,0 +1,46 @@
+// sumber
+// https://mahendrarajdhami.wordpress.com/2018/05/02/how-to-solve-scrolling-issue-in-google-maps-api-v2-supportmapfragment-inside-scrollview-when-we-try-to-scroll-map-vertically-parent-scroll-is-also-scrolled/
+
+// xml : create ImageView inside our fragment
+<fragment
+    android:id="@+id/map"
+    android:name="com.google.android.gms.maps.SupportMapFragment"
+    android:layout_width="match_parent"
+    android:layout_height="300dp">
+    <ImageView android:id="@+id/imageMapTransparent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@android:color/transparent" />
+</fragment>
+
+
+@SuppressLint("ClickableViewAccessibility") // di taruh di parent
+override onCreate {
+
+    // setup maps
+    val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
+    mapFragment.getMapAsync(this@MacActivity)
+    
+    // setup transparent image onTouch
+    binding.imageMapTransparent.setOnTouchListener { v, event ->
+    val action = event.action
+        when (action) {
+            MotionEvent.ACTION_DOWN -> {
+                // Disallow ScrollView to intercept touch events.
+                binding.scrollView.requestDisallowInterceptTouchEvent(true)
+                // Disable touch on transparent view
+                false
+            }
+            MotionEvent.ACTION_UP -> {
+                // Allow ScrollView to intercept touch events.
+                binding.scrollView.requestDisallowInterceptTouchEvent(false)
+                true
+            }
+            MotionEvent.ACTION_MOVE -> {
+                binding.scrollView.requestDisallowInterceptTouchEvent(true)
+                false
+            }
+            else -> true
+        }
+    }
+}
