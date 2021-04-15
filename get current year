@@ -1,0 +1,1 @@
+        var theYear = Calendar.getInstance().get(Calendar.YEAR).toString()
