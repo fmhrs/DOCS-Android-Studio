@@ -167,3 +167,5 @@ inner class transformer(val listSize: Int): ViewPager2.PageTransformer{
     }
 }
 ```
+
+### Circle indicator can visite [this page](https://medium.com/@adrian.kuta93/android-viewpager-with-dots-indicator-a34c91e59e3a)
