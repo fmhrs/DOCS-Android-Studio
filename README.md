@@ -20,3 +20,4 @@
 10. maps
 11. table (image inside table) addView(view, width, height)
 12. bug maps inside scrollview
+13. on boarding <--https://github.com/Ramotion/paper-onboarding-android-->
