@@ -17,6 +17,20 @@
 </com.google.android.material.textfield.TextInputLayout>
 ```
 
+list_item.xml
+```
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:ellipsize="end"
+    android:maxLines="1"
+    android:padding="16dp"
+    tools:text="List "
+    android:textAppearance="?attr/textAppearanceSubtitle1" />
+```
+
 ### Kotlin
 Setup item on dropdown
 ```
