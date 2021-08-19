@@ -1,7 +1,6 @@
 LORA WAN SMART WL
 
-forget wkwk
-implements , OnMapReadyCallback{
+
 
 fragment_maps.xml
 ```
@@ -33,7 +32,9 @@ activity_mac.xml
 
 MacActivity.xml
 ```
-
+forget wkwk
+implements , OnMapReadyCallback{
+private lateinit var mMap: GoogleMap
 
                        
 onCreate(){
