@@ -1,5 +1,7 @@
 LORA WAN SMART WL
 
+forget wkwk
+implements , OnMapReadyCallback{
 
 fragment_maps.xml
 ```
