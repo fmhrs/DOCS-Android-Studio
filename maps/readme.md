@@ -52,6 +52,28 @@ override fun onMapReady(googleMap: GoogleMap) {
 
     mMap.addMarker(MarkerOptions().position(maps1).title("$nameMac")).showInfoWindow()
     mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(maps1, zoomLevel))
+    
+    binding.imageMapTransparent.setOnTouchListener { v, event ->
+            val action = event.action
+            when (action) {
+                MotionEvent.ACTION_DOWN -> {
+                    // Disallow ScrollView to intercept touch events.
+                    binding.scrollView.requestDisallowInterceptTouchEvent(true)
+                    // Disable touch on transparent view
+                    false
+                }
+                MotionEvent.ACTION_UP -> {
+                    // Allow ScrollView to intercept touch events.
+                    binding.scrollView.requestDisallowInterceptTouchEvent(false)
+                    true
+                }
+                MotionEvent.ACTION_MOVE -> {
+                    binding.scrollView.requestDisallowInterceptTouchEvent(true)
+                    false
+                }
+                else -> true
+            }
+        }
 }
 ```
 
