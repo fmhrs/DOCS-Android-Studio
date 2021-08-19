@@ -15,7 +15,7 @@ fragment_maps.xml
 ```
 
 
-activity_mac.xml
+activity_chart.xml
 ```
 <fragment
     android:id="@+id/map"
@@ -28,8 +28,28 @@ activity_mac.xml
         android:src="@android:color/transparent" />
 </fragment>
 ```
+cata.ChartActivity.xml
+```
+onCreate(){
+val mapFragment = supportFragmentManager
+            .findFragmentById(R.id.map) as SupportMapFragment
+        mapFragment.getMapAsync(this)
+}
+override fun onMapReady(googleMap: GoogleMap) {
+    mMap = googleMap
+
+    val maps1 = LatLng(latitude, longitude)
+    val zoomLevel = 10.0f // This goes up to 21
+
+    mMap.addMarker(MarkerOptions().position(maps1).title("$nameMac")).showInfoWindow()
+    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(maps1, zoomLevel))
+}
+```
 
 
+
+
+//// buch of maps
 MacActivity.xml
 ```
 forget wkwk
@@ -38,9 +58,10 @@ private lateinit var mMap: GoogleMap
 
                        
 onCreate(){
+//AFTER ON RESPONSE RETROFIT {
     val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
     mapFragment.getMapAsync(this@MacActivity)
-
+//}
     binding.imageMapTransparent.setOnTouchListener { v, event ->
         val action = event.action
         when (action) {
