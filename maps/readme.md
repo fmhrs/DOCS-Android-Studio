@@ -1,7 +1,14 @@
 LORA WAN SMART WL
 
+manifest
+```
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
-
+    <meta-data
+        android:name="com.google.android.geo.API_KEY"
+        android:value="@string/google_maps_key" />
+```
 fragment_maps.xml
 ```
 <?xml version="1.0" encoding="utf-8"?>
