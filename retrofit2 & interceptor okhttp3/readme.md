@@ -90,6 +90,7 @@ interface Typicode {
 fun login(
     @Field("username") username: String,
     @Field("password") passsword: String
+    // @Query untuk get
 ): Call<dataPengguna>
 ```
 
