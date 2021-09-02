@@ -1,6 +1,4 @@
 ```
-package com.ajk.mqttmonitorcontrol.helper
-
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
