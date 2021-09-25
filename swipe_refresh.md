@@ -104,6 +104,11 @@ private fun disableLayout(){
     binding.layoutNoInternet.visibility = View.VISIBLE
 }
 
+private fun eneableLayout(){
+    binding.layoutActivity.visibility = View.VISIBLE
+    binding.layoutNoInternet.visibility = View.GONE
+}
+
 override fun onResume() {
     super.onResume()
     refreshLayout()
