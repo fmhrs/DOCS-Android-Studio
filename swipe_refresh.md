@@ -85,7 +85,7 @@ onCreate(){
     myInternet = Internet(this)
         
     binding.swiperefresh.setOnRefreshListener {
-        getAllDevice()
+        refreshLayout()
     }
 }
 
