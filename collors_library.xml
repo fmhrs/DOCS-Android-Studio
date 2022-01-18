@@ -1,3 +1,4 @@
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
@@ -375,3 +376,4 @@
     <color name="quantum_yellowA400">#ffea00</color>
     <color name="quantum_yellowA700">#ffd600</color>
 </resources>
+```
