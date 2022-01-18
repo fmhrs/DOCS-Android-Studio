@@ -1,7 +1,0 @@
-// jika dari recycler view context nya di dapetin dari parent.context dalam calss override onCreateViewHolder 
-// buat variable dg nama context di luar kelas onCreateViewHolder lalu isikan dengan parent.context di class override onCreateViewHolder
-binding.imageview.setImageDrawable(ContextCompat.getDrawable(context, image))
-
-
-// atau bisa langsung setImageResource
-binding.imageview.setImageResource(image)
