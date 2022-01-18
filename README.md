@@ -11,7 +11,7 @@
 
 
 ## JSON
-1. [GSON](https://github.com/fmhrs/android-studio-code/tree/master/json)
+1. [GSON](https://github.com/fmhrs/android-studio-code/tree/master/json) formating JSON String as JSON Object & handle multiple JSON format at Once
 
 
 ## GMAPS
